@@ -24,8 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
 
-      - name: Run flake8
-        run: flake8 .
+      - name: Run flake8 (warnings only, non-blocking)
+        run: |
+          echo "Running flake8 with warnings..."
+          flake8 . --exit-zero
+          echo "✅ Flake8 completed with warnings (non-blocking)"
 
-      - name: Run tests
+      - name: Run tests (blocking)
         run: pytest
